@@ -1,0 +1,182 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0077)http://www.armory.com/~rstevew/Public/Motors/H-Bridges/Blanchard/nch-brdg.htm -->
+<HTML><HEAD><TITLE>H-bridge using N channel FETs</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2737.800" name=GENERATOR></HEAD>
+<BODY>
+<H1>H-bridge using N channel FETs</H1>
+<H2>MOSFET N Channel H-Bridge Schematic </H2>
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" 
+align=bottom>Theory of Operation </H3>
+<P><I>by Eugene Blanchard</I></P>
+<P>The problem that most people run into when using N channel MOSFETs for 
+H-bridges is that the MOSFET used to turn on and off the positive power supply 
+voltage, Vcc, will not work. This is the MOSFET which sits between the motor and 
+Vcc.</P>
+<P>The reason it does not work, is that a MOSFET is a voltage controlled device 
+(transconductance). A voltage on the input (gate-source) controls a current on 
+the output (drain-source). The voltage on the gate must be above the threshold 
+voltage (4.5 to 7 volts) of the MOSFET in order for the MOSFET to turn on.</P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" align=bottom>The 
+problems with N channel MOSFETs </H3>
+<P>Here lies the problem. The MOSFET's drain lead is connected to Vcc. The goal 
+is to turn the MOSFET on such that the top of the motor is at Vcc potential. 
+This means that the MOSFET's source lead will be raised to Vcc's potential. BUT 
+we need the gate to be 4.5 to 7V higher than the source to keep the MOSFET 
+turned on and we only have Vcc to work from! We need a gate voltage that is 
+higher than Vcc by 4.5 to 7 V!</P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" 
+align=bottom>Voltage Doublers! </H3>
+<P>A higher voltage can be accomplished by using a voltage doubler circuit to 
+generate a voltage that is larger than Vcc. The chip that I selected is the 
+Intersil 7662 negative voltage source which can be used as a voltage doubler 
+also. It is easy to use, small (8 pin DIP) and inexpensive. The ICL7662 provides 
+about 5 mA of output which is more than sufficient to drive the MOSFETs. It is 
+good for a Vcc up to +18V or so while its sister chip the ICL7660 is only good 
+for a Vcc up to +10V.</P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" align=bottom>How 
+does it do that? </H3>
+<P>The components C2, D1, D2 and C3 of Figure 2 make up the voltage doubling 
+circuit. Basically, the ICL7662 voltage doubler is an oscillator that keeps 
+switching pin 2 from ground to Vcc and back again (See Figure 2). To start the 
+cycle, pin 2 is internally switched to ground. This charges up C2 by the 
+following path: Vcc to D1 to C2 to pin 2. C2 charges up to Vcc minus the voltage 
+drop across D1 which is roughly 0.7V or so. Across C2 there will be (Vcc-0.7) 
+Volts</P>
+<P>When ICL7662 switches again, pin 2 goes to Vcc but C2 has a full charge on it 
+(Vcc - 0.7V). This means that the anode of D2 is now Vcc from pin 2 PLUS the 
+charge of C2. The voltage on C2 is elevated above Vcc! </P>
+<P>Diode D2 dumps the charge into C3. C3 now has a charge that is equal to Vcc 
+from pin 2 plus the charge on C2 MINUS the voltage drop across D2 (0.7V or so). 
+C3 has Vcc + Vcc-0.7V - 0.7V on it which is 2xVcc - 1.4V. </P>
+<P>The voltage loss across the diodes can be minimized by using germanium (0.3V) 
+diodes or schottkey (0.25) diodes. The frequency of operation of the ICL7662 is 
+10 kHz at room temperature.</P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" align=bottom> 
+Bonus - Negative voltage source!</H3>
+<P><IMG src="H-bridge using N channel FETs_files/new_rain.gif" align=bottom> In 
+addition to being a voltage doubler, the ICL7662 is a negative voltage source 
+(actually that's its main purpose - we're just not using it right ;-) . If you 
+don't need a low-power negative voltage source, you can leave capacitor C4 and 
+diode D3 off the circuit.</P>
+<P>The capacitors C1 and C4 and diode D3 make up the negative voltage source. 
+Basically, the ICL7662 voltage doubler is an oscillator that keeps switching pin 
+2 from ground to Vcc and back again and at the same time switches pin 4 from 
+ground to pin 5 (See Figure 2). To start the cycle, pin 2 is internally switched 
+to Vcc and pin 4 is switched to ground. This charges up C1 to Vcc with the 
+positive side of the charge connected to pin 2 (very important).</P>
+<P>Next, pin 2 is internally connected to ground and pin 4 is internally 
+connected to pin 5. The positive charge on C1 is connected to ground (not 
+shorted - only connected). The capacitor has been electronically turned upside 
+down! This places the negative plate of C1 at pin 4 which results in a negative 
+Vcc onto pin 5. </P>
+<P>Pin 5 is connected to diode D3 which dumps the negative Vcc into C4. The 
+charge on C4 is -Vcc minus the voltage drop across diode D3 which results in 
+-(Vcc-0.7V) across C4. </P>
+<HR>
+
+<P><IMG src="H-bridge using N channel FETs_files/newinfo.gif" align=bottom></P>
+<P><IMG src="H-bridge using N channel FETs_files/nch-brdg.gif"></P>
+<P>Figure 1 (Rev 01- 10k) is a schematic of the N channel H-bridge discussed 
+here.</P>
+<P><IMG src="H-bridge using N channel FETs_files/icl7662.gif"></P>
+<P>Figure 2- (2.6k) is a schematic of a simple inexpensive voltage doubler 
+circuit. Both are GIF files that can be opened by any Web Browser.</P>
+<HR>
+
+<CENTER>
+<H3><IMG src="H-bridge using N channel FETs_files/bbb.gif" align=bottom> 
+IMPORTANT: <IMG src="H-bridge using N channel FETs_files/bbb.gif" 
+align=bottom></H3></CENTER>
+<P>MOSFETs are extremely static sensitive but more important is that if the Gate 
+is left open (no connection), the MOSFET can self- destruct. The Gate is a very 
+high impedance device (10+ megohms) and noise can trigger the MOSFET. Resistors 
+R4, R6, R8 &amp; R13 of Figure 1 have been added specifically to stop the MOSFET 
+from self destructing. It is very important to install these resistors FIRST 
+before installing the MOSFETs. You will find that after these resistors are 
+installed that the MOSFETs are quite stable devices. The resistors pull-down the 
+Gates and turn off the MOSFETs, not to mention add some static protection. </P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" align=bottom>Back 
+EMF protection</H3>
+<P>D1 to D4 route back EMF from the motor back to the power supply. Some MOSFETs 
+(actually most) have these diodes built-in, so they may not be necessary. </P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" 
+align=bottom>Control Transistors</H3>
+<P>Q1 &amp; Q7 are NPN transistors that invert the control signals to Q2 and Q8. 
+Q2 &amp; Q8 are PNP transistors that control Q3 and Q5 respectively. </P>
+<P>Looking at Q1 and Q2 operation only, we can see that a High at A will turn on 
+Q1. This allows current to flow from Q2's base. This turns on Q2 and raises the 
+Gate voltage of Q3 to +24V. Q3 turns on.</P>
+<P>When point A goes low, Q1 turns off, which turns off Q2 and Q3's gate is 
+pulled to ground by R4. Q3 turns off. Q7, Q8 and Q5 operation is similar.</P>
+<P>The circuit could of been made simpler by by using only a NPN transistor to 
+pull down Q3's gate except that should something happen to Q1 or Q7 (failure), 
+the FETs would be turned on. The extra transistors provide a "failsafe" mode of 
+operation.</P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" align=bottom> STOP 
+Mode</H3>
+<P>When A=0 and B=0, the motor is stopped. R4 and R13 pull down the Gates of Q3 
+and Q5 respectively and turn off the MOSFETs. </P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" 
+align=bottom>REVERSE Mode</H3>
+<P>When A=0 and B=1 (+5V), the motor is in reverse. Q1 is turned off, Q2 is 
+turned off and Q3 is turned off due to R4. </P>
+<P>Q7 is turned on by the voltage at B. Q7's collector pulls Q8's Base to 
+ground. This turns on Q8 which raises Q5's gate to +24V. This turns on Q5. The 
+-ve side of the motor is raised to +12V. R5 raises Q4's Gate to +11V or so 
+(voltage divider) which turns on Q4. Q4's Drain goes to ground which makes the 
++ve side of the motor go to ground. R7 is also connected to the +ve side of the 
+motor which pulls down Q6's Gate and makes sure that it is turned off. The 
+current path for the motor is from +12V to Q5 to -ve contact to +ve contact to 
+Q4 to ground. </P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" 
+align=bottom>FORWARD Mode</H3>
+<P>When A=1 and B=0, the motor is in forward. Q7 is turned off, Q8 is turned off 
+and Q5 is turned off due to R13. </P>
+<P>Q1 is turned on due to the voltage at A and Q1's collector goes to ground. 
+This turns on Q2. Q2's collector raises the Q3's gate to +24V which turns on Q3. 
+Q3 raises the motor's +ve side to +12V. R7 raises Q6's Gate voltage and turns it 
+on. When Q6 turns on, R5 makes sure that Q4 remains off. The current path for 
+the motor is from +12V to Q3 to +ve contact to -ve contact to Q6 to ground. </P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" align=bottom>NOT 
+ALLOWED Mode (or fuse test mode)</H3>
+<P>IF A=1 and B=1 then all MOSFETs turn on which shorts out the power supply 
+among other things - Not recommended. </P>
+<HR>
+
+<H3><IMG src="H-bridge using N channel FETs_files/rd_tri.gif" 
+align=bottom>Miscellaneous Info</H3>
+<P>The tricolor LED allows you to test the circuit without connecting the motor. 
+The LED will be green for one direction and red for the other. Handy test. </P>
+<P>Motors make a lot of electrical noise from the brushes when running and huge 
+electrical spikes when stopping, starting and especially changing direction. C1 
+and C2 try to suppress the noise spikes. Negative spikes are shorted to either 
+ground or the power supply by D1 to D4. Z1 tries to clip the positive spikes. 
+</P>
+<P>MOSFETs turn on very fast, if you have problems with noise, you may want to 
+put 0.1 uF capacitors in parallel with R4 and R13 to slow the turn-on time. This 
+will reduce the EMF generated by the motors. If the rise time is too slow the 
+MOSFETs may heat up excessively!</P>
+<P>Try to keep the motor supply separate from the logic supply if possible or go 
+to extreme filtering techniques using coils, diodes and capacitors to filter out 
+the motor noise. </P></BODY></HTML>

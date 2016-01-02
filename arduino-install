@@ -1,0 +1,11 @@
+apt-get install avr-libc gcc-avr
+https://github.com/jmgiacalone/sanguino1284p
+
+
+/usr/share/arduino/hardware/arduino/cores/arduino/wiring.h
+
+
+line 79 in that file you will find a "#define round" macro. You need to comment it out like this:
+Code:
+
+// #define round(x)     ((x)>=0?(long)((x)+0.5):(long)((x)-0.5))

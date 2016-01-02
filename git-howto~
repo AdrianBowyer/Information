@@ -1,0 +1,94 @@
+Git ignore SSH flags
+export GIT_SSL_NO_VERIFY=1
+
+===========================
+
+Remove a sensitive file:
+
+https://help.github.com/articles/remove-sensitive-data/
+
+==============================
+
+Find all that's changed between two commits:
+
+git difftool 406a0c074feae6d99a2 c0edfe5b4d505afb
+
+====
+
+Resolve merge conflicts
+
+git mergetool -y -t kdiff3
+
+=================
+Merge someone else's fork:
+
+git remote add dc42 git://github.com/dc42/RepRapFirmware.git
+git fetch dc42
+git checkout duet
+git merge dc42/duet
+
+==============
+
+Show URL of origin:
+
+git remote show origin
+
+===============
+
+Make branch a identical to branch b:
+
+git checkout a
+git reset --hard b
+git reset --soft HEAD@{1}
+git commit
+
+===============
+
+To Revert a single file:
+
+git checkout Marlin/Configuration.h (owe)
+
+To go back to last commit:
+
+git reset HEAD --hard
+
+
+copy .ssh/RRP/* or .ssh/Standard/* to .ssh
+
+ssh-add ~/.ssh/id_rsa.pub
+
+After making a new repository on Github:
+
+mkdir Prusa-Mendel
+cd Prusa-Mendel
+git init
+touch README
+git add README
+git commit -m 'first commit'
+git remote add origin git@github.com:reprappro/Prusa-Mendel.git
+git push -u origin master
+
+Useful: 
+https://help.github.com/articles/fork-a-repo]
+
+To get a local copy:
+git clone [-b master] git@github.com:reprappro/Huxley.git
+
+To check back in to the remote:
+cd RepRap/Git/host
+git add -A
+git commit -a
+
+git push --repo=git@github.com:reprap/host.git
+
+git push --repo=git@github.com:AdrianBowyer/RepRapLtd-engineering.git
+
+git push --repo=git@github.com:reprappro/Huxley.git
+
+git push --repo=git@github.com:reprappro/Mendel.git
+
+gitk --all 
+
+select the commit you want to rollback to (right-click), and select "Reset master branch to here".
+
+

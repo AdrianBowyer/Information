@@ -1,0 +1,7 @@
+http://blog.mypapit.net/2007/10/how-to-switch-between-different-java-jvm-in-ubuntu-and-debian-gnu-linux.html
+
+sudo update-alternatives --config java
+
+http://issamux.blogspot.co.uk/2011/04/java-change-default-java-and-javac.html
+
+

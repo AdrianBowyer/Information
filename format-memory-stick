@@ -1,0 +1,4 @@
+fdisk -l 
+umount /dev/sdc1
+mkdosfs -F 32 -n NAME -I /dev/sdc1
+

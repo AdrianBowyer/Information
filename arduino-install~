@@ -1,0 +1,3 @@
+apt-get install avr-libc gcc-avr
+https://github.com/jmgiacalone/sanguino1284p
+

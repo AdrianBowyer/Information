@@ -1,0 +1,21 @@
+P {
+	FONT-FAMILY: Arial
+}
+.LinkList {
+	FONT-SIZE: 10px; FONT-FAMILY: Arial
+}
+.Developer {
+	FONT-SIZE: 8px; COLOR: #ffffff; FONT-FAMILY: Terminal
+}
+.BulletList {
+	FONT-SIZE: 10px; TEXT-INDENT: 0px; FONT-FAMILY: tahoma
+}
+.PageTitle {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Terminal
+}
+A:hover {
+	COLOR: #ff0000; TEXT-DECORATION: underline
+}
+A {
+	COLOR: #0000ff; TEXT-DECORATION: none
+}

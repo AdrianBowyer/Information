@@ -1,0 +1,6 @@
+sudo nautilus /usr/share/applications/
+
+Point to gedit, hit Alt+Enter (Properties), and replace command to
+
+gedit -s %U
+

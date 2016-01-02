@@ -1,0 +1,14 @@
+xhost +
+/etc/init.d/spacenavd restart
+
+http://www.vitalbodies.com/blog/2010/04/21/getting-a-3dconnexion-device-running-in-ubuntu/
+
+http://manpages.ubuntu.com/manpages/precise/man8/spnavd_ctl.8.html
+
+/usr/local/Spacenav/libspnav-0.2.3/examples/cube/cube
+
+http://spnav.readthedocs.org/en/latest/setup.html
+
+https://wiki.gentoo.org/wiki/SpaceNavigator
+
+

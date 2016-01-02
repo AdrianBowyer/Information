@@ -1,0 +1,1 @@
+gs -q -sPAPERSIZE=letter -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=/tmp/reprappro-huxley-to-2012-06-07.pdf huxley-p1.pdf huxley-p2.pdf huxley-p3.pdf huxley-p4.pdf huxley-p5.pdf huxley-p6.pdf huxley-p7.pdf huxley-p8.pdf huxley-p9.pdf huxley-p10.pdf huxley-p11.pdf huxley-p12.pdf huxley-p13.pdf huxley-p14.pdf huxley-p15.pdf

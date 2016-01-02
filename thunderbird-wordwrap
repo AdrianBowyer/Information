@@ -1,0 +1,1 @@
+Go into Tools > Options > Advanced > General and click on Config Editor. Copy-paste mailnews.wraplength into the search bar of the preference window and double-click on the entry that remains. Change it from 72 to any other value, or to 0 to disable word wrapping. Note that this has only any effect for plain-text messages, not if you compose in HTML format.

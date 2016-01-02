@@ -1,0 +1,16 @@
+How to edit video from the command line.
+
+
+Copy SANY0127.MP4 to 1.avi starting 4.3 seconds in and running for a duration of 1 minute 20 seconds:
+
+  avconv -i 'SANY0127.MP4' -ss 00:00:04.3 -t 00:01:20 -vcodec mpeg4 -acodec ac3 -ar 48000 -ab 192k -same_quant 1.avi
+
+Put four files together into one file:
+
+  cat 1.avi 2.avi 3.avi 4.avi > 0.avi
+
+Tidy up the created file, getting frame numbers right and so on:
+
+  avconv -i 0.avi -vcodec mpeg4 -acodec ac3 -ar 48000 -ab 192k -same_quant duet.avi
+
+
