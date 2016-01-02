@@ -1,4 +1,0 @@
-fdisk -l 
-umount /dev/sdc1
-mkdosfs -F 32 -I /dev/sdc1
-
